@@ -1,89 +1,68 @@
 #EXERCÍCIO 1:
-distancia = int(input())
-tempo = distancia*2
-print(f"{tempo} minutos")
+aux=False
+while True:
+    n=int(input())
+    if n==0:break
+    dados = dict()
+    for i in range(n):
+        nome=input()
+        x=input().split()
+        x.append(nome)
+        dados[i]=x
+    dados=dict(sorted(dados.items(),key=lambda x: x[1][2]))
+    dados=dict(sorted(dados.items(),key=lambda x: x[1][1],reverse=True))
+    dados=dict(sorted(dados.items(),key=lambda x: x[1][0]))
+    if aux:
+        print()
+    for i,j in dados.items():
+        print(*j,sep=" ")
+    aux=True
 
 #EXERCÍCIO 2:
-num = int(input())
-n = 1
-for i in range (2,num+1):
-    n *= i
-print(n)
+n = int(input())
+all_strings = []
+
+for i in range(n):
+    arvores = []  
+    while True:
+        arvore = input()
+        if arvore == "":
+                    break
+        arvores.append(arvore)
+        if i == n-1:
+            try:  
+                arvore = input()
+            except EOFError:
+                break
+
+    total = len(arvores)
+    aux = sorted(set(arvores))
+    strings = []
+  
+    for especie in aux:
+        porcentagem = (arvores.count(especie) / total) * 100
+        strings.append("{} {:.4f}".format(especie, porcentagem))
+    all_strings.append(strings)
+    
+for strings in all_strings:
+    for string in strings:
+        print(string)
+    print()
+
 
 #EXERCÍCIO 3:
-n = int(input())
-valores_a_pagar = []
+import math
+while True:
+    try: 
 
-for c in range(0,n):
-    produtos = {
-    "nomes": [],
-    "precos": []
-}
-    conta = 0
-    m = int(input())
-    for i in range(0,m):
-        dados = input().split(" ")
-        produtos["nomes"].append(dados[0])
-        produtos["precos"].append(dados[1])
-    p = int(input())
-    for x in range(0,p):
-        prod = input().split(" ")
-        y = produtos["nomes"].index(prod[0])
-        conta += float(produtos["precos"][y])*float(prod[1])
-    valores_a_pagar.append(conta)
-for k in valores_a_pagar:
-    print(f"R$ {k:.2f}")
-
-#EXERCÍCIO 4:
-n = input()
-respotas = input().split(" ")
-ganhadores = 0
-for c in respotas:
-    if c == n:
-            ganhadores += 1
-    else:
-        pass
-print(ganhadores)
-
-#EXERCÍCIO 5:
-dados = input().split(" ")
-if int(dados[0]) * int(dados[2]) <= int(dados[1]):
-    print("S")
-else:
-    print("N")
-
-#EXERCÍCIO 6:
-n = int(input())
-total = 0
-for c in range(0,n):
-    dados = input().split(" ")
-    dist = int(dados[0]) * int(dados[1])
-    total += dist
-print(total)
-
-#EXERCÍCIO 7:
-t = int(input())
-print(t*4)
-
-#EXERCÍCIO 8:
-coluna = []
-n = int(input())
-while n < 3 and n > 500:
-    n = int(input())
-for i in range(0,n):
-    num = int(input())
-    while num != 1 and num != 2:
-        num = int(input())
-    coluna.append(num)
-
-circulo = 0
-num_ant = 0
-for k in coluna:
-    if k != num_ant:
-        circulo += 1
-        num_ant = k
-    else:
-        num_ant = k
-        pass
-print(circulo)
-
+        n = int(input())
+        medadosidadosas = input().split(" ")
+        h = int(medadosidadosas[0])/100
+        c = int(medadosidadosas[1])/100
+        l = int(medadosidadosas[2])/100
+        hip = math.sqrt((h**2)+(c**2))
+        area = hip*l*n
+        print(f"{area:.4f}")
+    
+    except EOFError:
+        break
